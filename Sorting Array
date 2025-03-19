@@ -1,0 +1,32 @@
+#include<stdio.h>
+
+void sortArray(int* arr, int size){
+    printf("Sorted array:\n");
+    for(int i = 0; i < size; i++){
+        int MININDEX = i;
+        for(int j = i + 1; j < size;  j++){
+            if(arr[j] < arr[MININDEX]){
+                MININDEX = j;
+            }
+        }
+        int temp = arr[i];
+        arr[i] = arr[MININDEX];
+        arr[MININDEX] = temp;
+    }
+}
+
+int main(){
+    int size;
+    printf("Enter size of array: ");
+    scanf("%d", &size);
+    int arr[size];
+    printf("Enter array elements:\n");
+    for(int i = 0; i < size; i++){
+        scanf("%d", &arr[i]);
+    }
+    sortArray(arr, size);
+    for(int i = 0; i < size; i++){
+        printf("%d ", arr[i]);
+    }
+    return 0;
+}
