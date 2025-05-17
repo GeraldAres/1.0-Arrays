@@ -1,0 +1,41 @@
+#include<iostream>
+int main(){
+    char op;
+    double num1;
+    double num2;
+    double res;
+
+    std::cout << "*****CALCULATOR*****" << '\n';
+    
+
+    std::cout << "Enter num 1: ";
+    std::cin >> num1;
+    std::cout << "Enter the either of these operator's -> * / - +: ";
+    std::cin >> op;
+    std::cout << "Enter num2: ";
+    std::cin >> num2;
+
+    switch(op){
+        case '+': 
+            res = num1 + num2;
+            std::cout << "Result: " << res;
+            break;
+        case '-':
+            res = num1  - num2;
+            std::cout << "Result: " << res;
+            break;
+        case '*':
+            res = num1 * num2;
+            std::cout << "Result: " << res;
+            break;
+        case '/':
+            res = num1 / num2;
+            std::cout << "Result: " << res;
+            break;
+        default:
+            std::cout << "Invalid operator." << '\n';
+            break;
+    }
+
+    return 0;
+} 
