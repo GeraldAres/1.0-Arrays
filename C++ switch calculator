@@ -47,3 +47,24 @@ int main(){
 //do while loop practice, prompts the user to input a positive number. If condition is not met it will run continously with a statement
 that says "User should enter a positive number" else if the condition is met. The code will break and there will be an output of
 User have successfully placed a positive number.
+
+//Practice for loop syntax using c++
+#include<iostream>
+int main(){
+    int size;
+
+    std::cout << "Enter size of the array: ";
+    std::cin >> size;
+     
+    int arr[size];
+
+    for(int i = 0; i < size; i++){
+        std::cout << "Enter #" << i + 1 << ": ";
+        std::cin >> arr[i];
+    }
+
+    for(int i = 0; i < size; i++){
+        std::cout << "Array #" << i + 1 << " " << arr[i]  << '\n';
+    }
+    return 0;
+} 
