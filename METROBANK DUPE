@@ -1,0 +1,123 @@
+#include<iostream>
+#include<iomanip>
+void displayBalance(double bal);
+double deposit();
+double withdraw(double bal);
+double sendMoney(double recbal[], std::string user[], double bal);
+void displayPeople(double recbal[], std::string user[]);
+
+int main(){
+    double bal = 0.0;
+    double recBal[3] = {0, 0, 0};
+    std::string user[3] = {"Madela", "Princess", "Sam"};
+    
+    int choice = 0;
+    std::string name;
+
+
+    std::cout << "***************WELCOME TO METROBANK***************\n";
+    std::cout << "Enter Username: ";
+    std::getline (std::cin, name);
+
+    do{
+          
+            std::cout << "\nWelcome, " << name << "!\nHow may we be of service today?\n";
+            std::cout << "1 - Show Balance, 2 - Deposit, 3 - Withdraw, 4 - Send Money, 5 - Check Recipient's Balance, 6 - Exit:\n";
+            std::cin >> choice;
+            switch(choice){
+                case 1:
+                    displayBalance(bal);
+                    break;
+                case 2:
+                    bal = bal + deposit();
+                    std::cout << '\n';
+                    displayBalance(bal);
+                    break;
+                case 3: 
+                    bal = bal - withdraw(bal);
+                    std::cout << '\n';
+                    displayBalance(bal);
+                    break;
+                case 4:
+                    bal = bal - sendMoney(recBal, user, bal);
+                    std::cout << '\n';
+                    displayBalance(bal);
+                    break;
+                case 5:
+                    displayPeople(recBal, user);
+                    break;
+                case 6:
+                    std::cout << "Thank you for visiting!\n";
+                    break;
+                default:
+                std::cout << "Invalid.\n";
+                }
+    }while(choice != 6);
+
+    return 0;
+} 
+
+
+void displayBalance(double bal){
+    std::cout << "Current Balance: $" << std:: setprecision(2) << std::fixed << bal << '\n'; 
+    return;
+}
+double deposit(){
+    double amount;
+    std::cout << "Enter Amount to be deposited: ";
+    std::cin >> amount;
+    std::cout << "Successfully deposited " << amount;
+    return amount;
+}
+double withdraw(double bal){
+    double minus;
+    std::cout << "Enter Amount to be withdrawed: ";
+    std::cin >> minus;
+
+    if(minus > bal){
+        std::cout << "Insufficient Balance.\n";
+        return 0;
+    } else if (minus < 0){
+        std::cout << "Invalid Input.\n";
+        return 0;
+    } else {
+    std::cout << "Withdraw Amount: " << minus;
+    return minus;
+    }
+}
+
+double sendMoney (double recbal[], std::string user[], double bal){
+    double amount;
+    int recipient;
+
+    std::cout << "List of connected People:\n";
+    for(int i = 0; i < 3; i++){
+        std::cout << i + 1  << "-" << user[i] << '\n';
+    }
+    std::cout << "Enter choice of recipient: ";
+    std::cin >> recipient;
+    
+    if(recipient < 1 || recipient > 3){
+        std::cout << "Invalid Input.\n";
+        return 0;
+    }
+
+    std::cout << "Enter amount to send to " << user[recipient - 1] << ": ";
+    std::cin >> amount;
+
+    if(amount > bal){
+        std::cout << "Insufficient Balance.\n";
+        return 0;
+    } else {
+        recbal[recipient - 1] += amount;
+        std::cout << "Successfully sent $ " << amount << " to " << user[recipient - 1];
+        return amount;
+    }
+}
+
+
+void displayPeople(double recbal[], std::string user[]){
+    for(int i = 0; i < 3; i++){
+        std::cout << user[i] << ": $ " << std::setprecision(2) << std::fixed << recbal[i] << '\n';
+    }
+}
