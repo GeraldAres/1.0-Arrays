@@ -1,0 +1,72 @@
+#include<iostream>
+#include<iomanip>
+void displayBalance(double bal);
+double deposit();
+double withdraw(double bal);
+int main(){
+    double bal = 00.00;
+    int choice = 0;
+    std::string name;
+
+
+    std::cout << "***************WELCOME TO METROBANK***************\n";
+    std::cout << "Enter Username: ";
+    std::getline (std::cin, name);
+
+    do{
+            std::cout << "\nWelcome, " << name << "!\nHow may we be of service today?\n";
+            std::cout << "1 - Show Balance, 2 - Deposit, 3 - Withdraw, 4 - Exit:\n";
+            std::cin >> choice;
+            switch(choice){
+                case 1:
+                    displayBalance(bal);
+                    break;
+                case 2:
+                    bal = bal + deposit();
+                    std::cout << '\n';
+                    displayBalance(bal);
+                    break;
+                case 3: 
+                    bal = bal - withdraw(bal);
+                    std::cout << '\n';
+                    displayBalance(bal);
+                    break;
+                case 4:
+                    std::cout << "Thank you for visiting!\n";
+                    break;
+                default:
+                std::cout << "Invalid.\n";
+                }
+    }while(choice != 4);
+
+    return 0;
+} 
+
+
+void displayBalance(double bal){
+    std::cout << "Current Balance: $" << std:: setprecision(2) << std::fixed << bal << '\n'; 
+    return;
+}
+double deposit(){
+    double amount;
+    std::cout << "Enter Amount to be deposited: ";
+    std::cin >> amount;
+    std::cout << "Successfully deposited " << amount;
+    return amount;
+}
+double withdraw(double bal){
+    double minus;
+    std::cout << "Enter Amount to be withdrawed: ";
+    std::cin >> minus;
+
+    if(minus > bal){
+        std::cout << "Insufficient Balance.\n";
+        return 0;
+    } else if (minus < 0){
+        std::cout << "Invalid Input.\n";
+        return 0;
+    } else {
+    std::cout << "Withdraw Amount: " << minus;
+    return minus;
+    }
+}
