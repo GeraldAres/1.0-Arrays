@@ -1,3 +1,5 @@
+
+//Simple operating calculator
 #include<iostream>
 int main(){
     char op;
@@ -39,3 +41,9 @@ int main(){
 
     return 0;
 } 
+
+
+
+//do while loop practice, prompts the user to input a positive number. If condition is not met it will run continously with a statement
+that says "User should enter a positive number" else if the condition is met. The code will break and there will be an output of
+User have successfully placed a positive number.
